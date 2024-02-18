@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyContext from "./MyContext";
 import PropTypes from "prop-types";
 
 function Provider({ children }) {
 
-  const [shortUrl, setShortUrl] = useState({});
+  const [fetchShortUrl, setFetchShortUrl] = useState([]);
 
   async function fetchUrl() {
     const url = "url do servidor";
@@ -15,11 +15,15 @@ function Provider({ children }) {
       }
     });
     const response = await promise.json();
-    console.log(response);
+    setFetchShortUrl(response);
   }
 
+  useEffect(() => {
+    fetchUrl();
+  }, [])
+
   const valueProvider = {
-    fetchUrl
+    fetchShortUrl
   }
 
   return (

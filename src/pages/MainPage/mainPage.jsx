@@ -1,8 +1,11 @@
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import "./mainPage.css";
+import MyContext from '../../Context/MyContext';
 
 function MainPage() {
+
+  const { fetchShortUrl } = useContext(MyContext);
 
   const password = nanoid();
   const [passworState, setPasswordState] = useState("");
