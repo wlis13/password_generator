@@ -23,6 +23,18 @@ function App() {
     setShortUrl(object);
   }
 
+  async function fetchUrl() {
+    const url = "url do servidor";
+    const promise = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const response = await promise.json();
+    console.log(response);
+  }
+
   return (
     <div className='container_app_password_generator'>
       <h1>Gerador de senhas</h1>
